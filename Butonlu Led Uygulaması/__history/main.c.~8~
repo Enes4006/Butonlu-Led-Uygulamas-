@@ -1,0 +1,23 @@
+#include <16f877.h>
+#use delay(clock=4000000)
+void main ()
+{
+set_tris_b(0xF0); // MSB 4 pin INPUT (F=1111), LSB 4 pin OUTPUT (0=0000) yapýldý.
+output_b(0x00); // Bütün pinler lojik-0 yapýldý.
+ 
+while(true)
+ {
+ 
+ if(input(pin_b4)==1) // pin_b4 (buton baðlý) lojik 1 olursa þartý.
+ {
+ output_high(pin_b0); // pin_b0 çýkýþýný (led baðlý) lojik 1 yap. 
+ delay_ms(1000); 
+ }
+ else 
+ {
+ output_low(pin_b0); // buton basýlý deðilse led çýkýþýný 0 yap.
+ delay_ms(100);
+ }
+ }
+}
+
